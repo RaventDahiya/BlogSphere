@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("./partials/head") %>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign in | BlogSphere</title>
+    <style>
+      body {
+        min-height: 100vh;
+        background: #000;
+      }
+
+      .signin-card {
+        max-width: 460px;
+        border: 1px solid #fff;
+        border-radius: 1rem;
+        box-shadow:
+          0 0 8px rgba(255, 255, 255, 0.9),
+          0 0 20px rgba(255, 255, 255, 0.65),
+          0 0 45px rgba(255, 255, 255, 0.4);
+      }
+    </style>
+  </head>
+  <body>
+    <main class="container d-flex align-items-center justify-content-center min-vh-100 py-4">
+      <div class="card signin-card shadow-lg w-100">
+        <div class="card-body p-4 p-md-5">
+          <div class="text-center mb-4">
+            <h1 class="h3 fw-bold mb-2">Welcome back</h1>
+            <p class="text-muted mb-0">Sign in to your BlogSphere account</p>
+          </div>
+
+          <% if (typeof success !== "undefined" && success) { %>
+            <div class="alert alert-success" role="alert"><%= success %></div>
+          <% } %>
+
+          <% if (typeof error !== "undefined" && error) { %>
+            <div class="alert alert-danger" role="alert"><%= error %></div>
+          <% } %>
+
+          <form action="/user/signin" method="POST">
+            <div class="mb-3">
+              <label class="form-label" for="email">Email address</label>
+              <input
+                class="form-control form-control-lg"
+                type="email"
+                id="email"
+                name="email"
+                placeholder="you@example.com"
+                autocomplete="email"
+                required
+              />
+            </div>
+
+            <div class="mb-4">
+              <label class="form-label" for="password">Password</label>
+              <input
+                class="form-control form-control-lg"
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Enter your password"
+                autocomplete="current-password"
+                required
+              />
+            </div>
+
+            <button class="btn btn-dark btn-lg w-100" type="submit">
+              Sign in
+            </button>
+          </form>
+
+          <p class="text-center text-muted mt-4 mb-0">
+            Don't have an account?
+            <a class="link-dark fw-semibold" href="/user/signup">Create one</a>
+          </p>
+        </div>
+      </div>
+    </main>
+
+    <%- include("./partials/scripts") %>
+  </body>
+</html>

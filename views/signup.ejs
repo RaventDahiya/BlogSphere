@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("./partials/head") %>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign up | BlogSphere</title>
+    <style>
+      body {
+        min-height: 100vh;
+        background: #000;
+      }
+
+      .signup-card {
+        max-width: 460px;
+        border: 1px solid #fff;
+        border-radius: 1rem;
+        box-shadow:
+          0 0 8px rgba(255, 255, 255, 0.9),
+          0 0 20px rgba(255, 255, 255, 0.65),
+          0 0 45px rgba(255, 255, 255, 0.4);
+      }
+    </style>
+  </head>
+  <body>
+    <main class="container d-flex align-items-center justify-content-center min-vh-100 py-4">
+      <div class="card signup-card shadow-lg w-100">
+        <div class="card-body p-4 p-md-5">
+          <div class="text-center mb-4">
+            <h1 class="h3 fw-bold mb-2">Create your account</h1>
+            <p class="text-muted mb-0">Join the BlogSphere community</p>
+          </div>
+
+          <% if (typeof error !== "undefined" && error) { %>
+            <div class="alert alert-danger" role="alert"><%= error %></div>
+          <% } %>
+
+          <form action="/user/signup" method="POST">
+            <div class="mb-3">
+              <label class="form-label" for="fullName">Full name</label>
+              <input
+                class="form-control form-control-lg"
+                type="text"
+                id="fullName"
+                name="fullName"
+                placeholder="Enter your full name"
+                autocomplete="name"
+                required
+              />
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label" for="email">Email address</label>
+              <input
+                class="form-control form-control-lg"
+                type="email"
+                id="email"
+                name="email"
+                placeholder="you@example.com"
+                autocomplete="email"
+                required
+              />
+            </div>
+
+            <div class="mb-4">
+              <label class="form-label" for="password">Password</label>
+              <input
+                class="form-control form-control-lg"
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Create a password"
+                autocomplete="new-password"
+                minlength="6"
+                required
+              />
+            </div>
+
+            <button class="btn btn-dark btn-lg w-100" type="submit">
+              Create account
+            </button>
+          </form>
+
+          <p class="text-center text-muted mt-4 mb-0">
+            Already have an account?
+            <a class="link-dark fw-semibold" href="/user/signin">Sign in</a>
+          </p>
+        </div>
+      </div>
+    </main>
+
+    <%- include("./partials/scripts") %>
+  </body>
+</html>
